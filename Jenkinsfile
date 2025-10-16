@@ -1,20 +1,22 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("Restore project dependencies"){
-            steps{
+    stages {
+        stage("Restore project dependencies") {
+            steps {
                 bat 'dotnet restore'
             }
-        stage("Build the project"){
-            steps{
+        }
+        
+        stage("Build the project") {
+            steps {
                 bat 'dotnet build --no-restore'
             }
         }
-        stage("Run tests"){
-            steps{
-                bat 'dotnet build --no-build --verbosity normal'
+        
+        stage("Run tests") {
+            steps {
+                bat 'dotnet test --no-build --verbosity normal'
             }
-        }
         }
     }
 }
